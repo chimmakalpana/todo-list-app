@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef3f1;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+.container {
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+h1 {
+  text-align: center;
+  color: #134A3D;
+  font-size: 22px;
+}
+.input-box {
+  display: flex;
+  margin-bottom: 15px;
+}
+#taskInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+.input-box button {
+  padding: 8px 14px;
+  background-color: #1F6F5C;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  background-color: #f4f4f4;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
+li button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}
+</style>
+<title>My To-Do List</title>
+</head>
+<body>
+<div class="container">
+<h1>My To-Do List</h1>
+<div class="input-box">
+<input type="text" id="taskInput" placeholder="Add a new task...">
+<button onclick="addTask()">Add</button>
+</div>
+<ul id="taskList"></ul>
+</div>
+<script>
+function addTask() {
+var input = document.getElementById("taskInput");
+var taskText = input.value.trim();
+if (taskText === "") {
+alert("Please type a task first!");
+return;
+}
+var li = document.createElement("li");
+var span = document.createElement("span");
+span.textContent = taskText;
+span.onclick = function () {
+li.classList.toggle("completed");
+};
+var deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Delete";
+deleteBtn.onclick = function () {
+li.remove();
+};
+li.appendChild(span);
+li.appendChild(deleteBtn);
+document.getElementById("taskList").appendChild(li);
+input.value = "";
+}
+</script>
+</body>
+</html>
